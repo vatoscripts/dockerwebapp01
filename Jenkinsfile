@@ -12,21 +12,28 @@ pipeline {
         sh 'docker build . -t kiyange26773/webapp:v1'
       }
     }
+
     stage('Testing') {
       steps {
         echo 'Testing Passed!'
       }
     }
+
     stage('Publish') {
-     
       steps {
         sh 'docker push kiyange26773/webapp:v1'
       }
-      
     }
+
     stage('App Deploy') {
       steps {
         echo 'Deployed!'
+      }
+    }
+
+    stage('message') {
+      steps {
+        echo 'message'
       }
     }
 
