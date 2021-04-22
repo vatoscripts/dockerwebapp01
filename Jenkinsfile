@@ -18,8 +18,10 @@ pipeline {
       }
     }
     stage('Publish') {
+      docker.withRegistry('https://registry.hub.docker.com', 'DH') {
       steps {
         sh 'docker push kiyange26773/webapp:v1'
+      }
       }
     }
     stage('App Deploy') {
