@@ -17,7 +17,7 @@ pipeline {
         echo 'Testing Passed!'
       }
     }
-    stage('Build') {
+    stage('Publish') {
       steps {
         sh 'docker push kiyange26773/webapp:v1'
       }
