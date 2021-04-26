@@ -1,11 +1,12 @@
 pipeline {
   agent any
   stages {
-    stage('Init') {
-      steps {
-        echo 'Init...'
-      }
-    }
+    def app     
+      stage('Clone repository') {               
+             
+            checkout scm    
+      } 
+    
 
     stage('Build') {
       steps {
@@ -30,6 +31,13 @@ pipeline {
         echo 'message'
       }
     }
+    
+        stage('Push... image') {
+             docker.withRegistry('https://registry.hub.docker.com', 'DH') {            
+             app.push("${env.BUILD_NUMBER}")            
+             app.push("latest")        
+              }    
+           }
 
   }
 }
