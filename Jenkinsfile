@@ -19,26 +19,6 @@ pipeline {
       }
     }
 
- stage('Publish to DH') { 
-
-            steps { 
-
-                script { 
-                  docker.withRegistry('https://registry.hub.docker.com', 'DH') {
-                       dockerImage.push()
-                      def customImage = docker.build("kiyange26773/webapp:v1")
-
-        /* Push the container to the custom Registry */
-                      customImage.push()
-                     }
-                   
-
-                } 
-
-            }
-
-        }
-
     stage('App Deploy') {
       steps {
         echo 'Deployed!'
